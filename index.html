@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nigerian History Quiz</title>
+
+    <!--Favicon-->
+    <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg">
+    <style>
+        h1 img {
+            height: 1em; /* Adjust the height to match the font size of the h1 */
+            width: auto; /* Maintain aspect ratio */
+            display: inline-block; /* Display image inline with text */
+            vertical-align: middle; /* Align image vertically in the middle of the line */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        h3 {
+            color: #555;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        label {
+            color: #666;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 35px;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nigerian History Quiz <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg" alt="Nigerian Flag"></h1>
+    <form action="/quiz" method="POST">
+        <!-- Iterating through each question in the quiz -->
+        {% for qid, data in questions.items() %}
+        
+        <!-- Displaying the question -->
+        <h3>{{ data['question'] }}</h3>
+
+        <!-- Iterating through each option for the current question -->
+        {% for option in data['options'] %}
+        
+        <!-- Radio button for selecting an option -->
+        <input type="radio" id="q{{ qid }}" name="{{ qid }}" value="{{ option }}">
+
+        <!-- Label for the option -->
+        <label for="q{{ qid }}">{{ option }}</label><br>
+        {% endfor %}
+        {% endfor %}
+
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
